@@ -1,0 +1,43 @@
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            padding: 0 10%;
+        }
+
+        /* hero */
+        .image-hero img {
+            width: 100%;
+        }
+
+        .see-more {
+            padding: 12px 30px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .see-more:hover {
+            background-color: #1a6ca8;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .see-more i {
+            transition: transform 0.3s ease;
+        }
+
+        .see-more:hover i {
+            transform: translateX(3px);
+        }

@@ -1,3 +1,8 @@
+<?php
+session_start();
+require '../db/config.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,55 +14,25 @@
     <!-- bootstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
+    <!-- css -->
+    <link rel="stylesheet" href="./global/global.css">
 
-        .container {
-            padding: 0 10%;
-        }
-
-        /* hero */
-        .image-hero img {
-            width: 100%;
-        }
-
-        .see-more {
-            padding: 12px 30px;
-            background-color: #2980b9;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .see-more:hover {
-            background-color: #1a6ca8;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .see-more i {
-            transition: transform 0.3s ease;
-        }
-
-        .see-more:hover i {
-            transform: translateX(3px);
-        }
-    </style>
 </head>
 
 <body>
+
     <!-- navbar -->
     <nav class="container" style="position: sticky; top: 0; background: white; z-index: 200;">
+
+        <?php
+        if (!isset($_SESSION['username'])) {
+            // Jika ingin memaksa login untuk halaman ini, aktifkan baris berikut:
+            // header("location: ./controller/login.php");
+            // exit;
+        }
+        $username = isset($_SESSION['username']) ? $_SESSION['username'] : null;
+        ?>
+
         <nav class="nav-wrapper">
             <div class="logo">
                 <img src="" alt="logo">
@@ -95,20 +70,35 @@
                             <li><a href="navigation menus/ppdb.html">Informasi PPDB</a></li>
                         </ul>
                     </li>
-                    <!-- Login & Register untuk mobile -->
+                    <!-- Mobile User Control -->
                     <li class="mobile-user-control">
-                        <a href="" class="login-btn">Login</a>
-                        <a href="" class="register-btn">Register</a>
+                        <?php if ($username): ?>
+                            <a href="javascript:void(0)" class="username-btn"><?php echo htmlspecialchars($username); ?></a>
+                            <a href="./controller/logout.php" class="logout-btn">Logout</a>
+                        <?php else: ?>
+                            <a href="controller/login.php" class="login-btn">Login</a>
+                            <a href="controller/register.php" class="register-btn">Register</a>
+                        <?php endif; ?>
                     </li>
                 </ul>
             </div>
 
-            <!-- Login & Register untuk desktop -->
+            <!-- Desktop User Control -->
             <div class="user-control">
-                <a href="" class="login-btn">Login</a>
-                <a href="" class="register-btn">Register</a>
+                <?php if ($username): ?>
+                    <div class="user-dropdown">
+                        <span><?php echo htmlspecialchars($username); ?></span>
+                        <ul class="nav-sub-menu">
+                            <li><a href="./controller/logout.php">Logout</a></li>
+                        </ul>
+                    </div>
+                <?php else: ?>
+                    <a href="controller/login.php" class="login-btn">Login</a>
+                    <a href="controller/register.php" class="register-btn">Register</a>
+                <?php endif; ?>
             </div>
         </nav>
+
 
         <style>
             .container {
@@ -317,7 +307,7 @@
         <!-- script sub menu -->
         <script>
             document.querySelectorAll('.has-submenu > a').forEach(link => {
-                link.addEventListener('click', function (e) {
+                link.addEventListener('click', function(e) {
                     if (window.innerWidth <= 768) {
                         e.preventDefault();
                         this.parentElement.classList.toggle('active');
