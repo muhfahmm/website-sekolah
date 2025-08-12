@@ -25,14 +25,8 @@ require '../db/config.php';
     <nav class="container" style="position: sticky; top: 0; background: white; z-index: 200;">
 
         <?php
-        if (!isset($_SESSION['username'])) {
-            // Jika ingin memaksa login untuk halaman ini, aktifkan baris berikut:
-            // header("location: ./controller/login.php");
-            // exit;
-        }
         $username = isset($_SESSION['username']) ? $_SESSION['username'] : null;
         ?>
-
         <nav class="nav-wrapper">
             <div class="logo">
                 <img src="" alt="logo">
@@ -70,25 +64,17 @@ require '../db/config.php';
                             <li><a href="navigation menus/ppdb.html">Informasi PPDB</a></li>
                         </ul>
                     </li>
-                    <!-- Mobile User Control -->
-                    <li class="mobile-user-control">
-                        <?php if ($username): ?>
-                            <a href="javascript:void(0)" class="username-btn"><?php echo htmlspecialchars($username); ?></a>
-                            <a href="./controller/logout.php" class="logout-btn">Logout</a>
-                        <?php else: ?>
-                            <a href="controller/login.php" class="login-btn">Login</a>
-                            <a href="controller/register.php" class="register-btn">Register</a>
-                        <?php endif; ?>
-                    </li>
                 </ul>
             </div>
 
-            <!-- Desktop User Control -->
             <div class="user-control">
                 <?php if ($username): ?>
                     <div class="user-dropdown">
-                        <span><?php echo htmlspecialchars($username); ?></span>
-                        <ul class="nav-sub-menu">
+                        <a href="javascript:void(0)" class="user-name">
+                            <?php echo htmlspecialchars($username); ?>
+                            <i class="bi bi-chevron-down"></i>
+                        </a>
+                        <ul class="user-menu">
                             <li><a href="./controller/logout.php">Logout</a></li>
                         </ul>
                     </div>
@@ -98,6 +84,51 @@ require '../db/config.php';
                 <?php endif; ?>
             </div>
         </nav>
+
+        <style>
+            .user-dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .user-dropdown .user-menu {
+                display: none;
+                position: absolute;
+                right: 0;
+                background: white;
+                border: 1px solid #ccc;
+                list-style: none;
+                padding: 8px 0;
+                margin: 0;
+                min-width: 120px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .user-dropdown:hover .user-menu {
+                display: block;
+            }
+
+            .user-menu li {
+                padding: 5px 15px;
+            }
+
+            .user-menu li a {
+                text-decoration: none;
+                color: #333;
+                display: block;
+            }
+
+            .user-menu li a:hover {
+                background: #f0f0f0;
+            }
+
+            .user-name {
+                cursor: pointer;
+                text-decoration: none;
+                color: #333;
+            }
+        </style>
+
 
 
         <style>
