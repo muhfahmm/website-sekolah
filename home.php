@@ -341,7 +341,7 @@
     <div class="container">
         <div class="icon-menu-wrapper">
             <ul>
-                <li><a href=""><i class="bi bi-calendar-event"></i> Agenda</a></li>
+                <li><a href="navigation menus/agenda.html"><i class="bi bi-calendar-event"></i> Agenda</a></li>
                 <li><a href=""><i class="bi bi-newspaper"></i> Berita</a></li>
                 <li><a href=""><i class="bi bi-person-badge-fill"></i> Guru & Staff</a></li>
                 <li><a href=""><i class="bi bi-mortarboard"></i> Siswa</a></li>
