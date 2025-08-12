@@ -82,7 +82,6 @@
                             <li><a href="about.html">Tentang Kami</a></li>
                             <li><a href="visi-misi.html">Visi & Misi</a></li>
                             <li><a href="ekstrakurikuler.html">Ekstrakurikuler</a></li>
-                            <li><a href="navigation menus/guru-staff.html">Guru & Staff</a></li>
                             <li><a href="fasilitas.html">Fasilitas</a></li>
                         </ul>
                     </li>
