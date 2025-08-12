@@ -62,6 +62,7 @@ require '../db/config.php';
                         </a>
                         <ul class="nav-sub-menu">
                             <li><a href="navigation menus/ppdb.html">Informasi PPDB</a></li>
+                            <li><a href="navigation menus/ppdb.html">PPDB Online</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -85,6 +86,7 @@ require '../db/config.php';
             </div>
         </nav>
 
+        <!-- user dropdown -->
         <style>
             .user-dropdown {
                 position: relative;
@@ -1079,7 +1081,7 @@ require '../db/config.php';
                         <li><a href="#"><i class="bi bi-chevron-right"></i> Profil Sekolah</a></li>
                         <li><a href="#"><i class="bi bi-chevron-right"></i> Program Unggulan</a></li>
                         <li><a href="#"><i class="bi bi-chevron-right"></i> Galeri</a></li>
-                        <li><a href="#"><i class="bi bi-chevron-right"></i> PPDB Online</a></li>
+                        <li><a href="#"><i class="bi bi-chevron-right"></i> Informasi PPDB</a></li>
                     </ul>
                 </div>
 
@@ -1094,10 +1096,19 @@ require '../db/config.php';
 
                 <div class="footer-col">
                     <div class="user-control">
-                        <a href="" class="login-btn">Login</a>
-                        <a href="" class="register-btn">Register</a>
+                        <?php if ($username): ?>
+                            <div class="user-dropdown">
+                                <a href="javascript:void(0)" class="user-name" style="color: white; font-weight: bold;">
+                                    <?php echo htmlspecialchars($username); ?>
+                                </a>
+                            </div>
+                        <?php else: ?>
+                            <a href="controller/login.php" class="login-btn">Login</a>
+                            <a href="controller/register.php" class="register-btn">Register</a>
+                        <?php endif; ?>
                     </div>
                 </div>
+
             </div>
 
             <div class="copyright">
