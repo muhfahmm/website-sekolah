@@ -47,12 +47,45 @@ require '../db/config.php';
                             <span class="dropdown-icon"><i class="bi bi-chevron-down"></i></span>
                         </a>
                         <ul class="nav-sub-menu">
-                            <li><a href="about.html">Tentang Kami</a></li>
-                            <li><a href="visi-misi.html">Visi & Misi</a></li>
-                            <li><a href="fasilitas.html">Fasilitas</a></li>
+                            <li><a href="about.php">Tentang Kami</a></li>
+                            <li><a href="visi-misi.php">Visi & Misi</a></li>
+                            <li><a href="fasilitas.php">Fasilitas</a></li>
+                            <li><a href="fasilitas.php">Sarana Prasarana</a></li>
                         </ul>
                     </li>
-                    <li><a href="ekstrakurikuler.html">Ekstrakurikuler</a></li>
+                    <li class="has-submenu">
+                        <a href="javascript:void(0)">Informasi
+                            <span class="dropdown-icon"><i class="bi bi-chevron-down"></i></span>
+                        </a>
+                        <ul class="nav-sub-menu">
+                            <li><a href="navigation menus/ppdb.php">Siswa</a></li>
+                            <li><a href="navigation menus/ppdb.php">Guru</a></li>
+                            <li><a href="navigation menus/ppdb.php">Alumni</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="javascript:void(0)">Kesiswaan
+                            <span class="dropdown-icon"><i class="bi bi-chevron-down"></i></span>
+                        </a>
+                        <ul class="nav-sub-menu">
+                            <li><a href="navigation menus/ppdb.php">Beasiswa</a></li>
+                            <li><a href="navigation menus/ppdb.php">Prestasi</a></li>
+                            <li><a href="navigation menus/ppdb.php">OSIS</a></li>
+                            <li><a href="navigation menus/ppdb.php">Dewan Ambalan</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="javascript:void(0)">Organisasi
+                            <span class="dropdown-icon"><i class="bi bi-chevron-down"></i></span>
+                        </a>
+                        <ul class="nav-sub-menu">
+                            <li><a href="navigation menus/ppdb.php">OSIS</a></li>
+                            <li><a href="navigation menus/ppdb.php">Dewan Ambalan</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="ekstrakurikuler.php">Ekstrakurikuler</a></li>
                     <li><a href="">Kontak Kami</a></li>
                     <li><a href="">Gallery</a></li>
                     <li class="has-submenu">
@@ -60,8 +93,8 @@ require '../db/config.php';
                             <span class="dropdown-icon"><i class="bi bi-chevron-down"></i></span>
                         </a>
                         <ul class="nav-sub-menu">
-                            <li><a href="navigation menus/ppdb.html">Informasi PPDB</a></li>
-                            <li><a href="navigation menus/ppdb.html">PPDB Online</a></li>
+                            <li><a href="navigation menus/ppdb.php">Informasi PPDB</a></li>
+                            <li><a href="navigation menus/ppdb.php">PPDB Online</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -362,7 +395,7 @@ require '../db/config.php';
     <div class="container">
         <div class="icon-menu-wrapper">
             <ul>
-                <li><a href="navigation menus/agenda.html"><i class="bi bi-calendar-event"></i> Agenda</a></li>
+                <li><a href="navigation menus/agenda.php"><i class="bi bi-calendar-event"></i> Agenda</a></li>
                 <li><a href=""><i class="bi bi-newspaper"></i> Berita</a></li>
                 <li><a href=""><i class="bi bi-person-badge-fill"></i> Guru & Staff</a></li>
                 <li><a href=""><i class="bi bi-mortarboard"></i> Siswa</a></li>
