@@ -1,5 +1,19 @@
+<?php
+session_start();
+require '../db/config.php';
+
+// cek apakah admin sudah login
+if (!isset($_SESSION['admin'])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +25,7 @@
             min-height: 100vh;
             display: flex;
         }
+
         .sidebar {
             min-width: 250px;
             max-width: 250px;
@@ -18,13 +33,16 @@
             color: white;
             flex-shrink: 0;
         }
+
         .sidebar .nav-link {
             color: white;
         }
+
         .sidebar .nav-link.active {
             background-color: #0d6efd;
             font-weight: bold;
         }
+
         .content {
             flex-grow: 1;
             padding: 20px;
@@ -32,8 +50,8 @@
         }
     </style>
 </head>
-<body>
 
+<body>
     <!-- Sidebar -->
     <div class="sidebar p-3">
         <h4 class="text-center mb-4">Admin Panel</h4>
@@ -42,7 +60,7 @@
                 <a class="nav-link active" data-bs-toggle="tab" href="#home"><i class="bi bi-house"></i> Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#acara"><i class="bi bi-calendar-event"></i> Acara</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#acara"><i class="bi bi-calendar-event"></i> Agenda</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#berita"><i class="bi bi-newspaper"></i> Berita</a>
@@ -57,7 +75,7 @@
                 <a class="nav-link" data-bs-toggle="tab" href="#siswa"><i class="bi bi-people"></i> Siswa</a>
             </li>
             <li class="nav-item mt-3">
-                <a class="nav-link text-danger" href="#"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                <a class="nav-link text-danger" href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
             </li>
         </ul>
     </div>
@@ -68,6 +86,7 @@
             <div class="tab-pane fade show active" id="home">
                 <h2>Home</h2>
                 <p>Selamat datang di dashboard admin sekolah.</p>
+                <?php echo "<h1>Selamat datang, " . $_SESSION['admin']['username'] . "!</h1>";?>
             </div>
             <div class="tab-pane fade" id="acara">
                 <h2>Acara Sekolah</h2>
@@ -96,4 +115,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

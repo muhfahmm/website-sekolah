@@ -20,7 +20,6 @@ require '../db/config.php';
 </head>
 
 <body>
-
     <!-- navbar -->
     <nav class="container" style="position: sticky; top: 0; background: white; z-index: 200;">
 
@@ -50,10 +49,10 @@ require '../db/config.php';
                         <ul class="nav-sub-menu">
                             <li><a href="about.html">Tentang Kami</a></li>
                             <li><a href="visi-misi.html">Visi & Misi</a></li>
-                            <li><a href="ekstrakurikuler.html">Ekstrakurikuler</a></li>
                             <li><a href="fasilitas.html">Fasilitas</a></li>
                         </ul>
                     </li>
+                    <li><a href="ekstrakurikuler.html">Ekstrakurikuler</a></li>
                     <li><a href="">Kontak Kami</a></li>
                     <li><a href="">Gallery</a></li>
                     <li class="has-submenu">
