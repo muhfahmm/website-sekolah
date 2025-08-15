@@ -47,10 +47,9 @@ require '../db/config.php';
                             <span class="dropdown-icon"><i class="bi bi-chevron-down"></i></span>
                         </a>
                         <ul class="nav-sub-menu">
-                            <li><a href="about.php">Tentang Kami</a></li>
-                            <li><a href="visi-misi.php">Visi & Misi</a></li>
-                            <li><a href="fasilitas.php">Fasilitas</a></li>
-                            <li><a href="fasilitas.php">Sarana Prasarana</a></li>
+                            <li><a href="./nav-menu/profile/about.php">Tentang Kami</a></li>
+                            <li><a href="./nav-menu/profile/visi-misi.php">Visi & Misi</a></li>
+                            <li><a href="./nav-menu/profile/fasilitas.php">Fasilitas</a></li>
                         </ul>
                     </li>
                     <li class="has-submenu">
@@ -58,9 +57,9 @@ require '../db/config.php';
                             <span class="dropdown-icon"><i class="bi bi-chevron-down"></i></span>
                         </a>
                         <ul class="nav-sub-menu">
-                            <li><a href="navigation menus/ppdb.php">Siswa</a></li>
-                            <li><a href="navigation menus/ppdb.php">Guru</a></li>
-                            <li><a href="navigation menus/ppdb.php">Alumni</a></li>
+                            <li><a href="./nav-menu/informasi/siswa.php">Siswa</a></li>
+                            <li><a href="./nav-menu/informasi/guru.php">Guru</a></li>
+                            <li><a href="./nav-menu/informasi/alumni.php">Alumni</a></li>
 
                         </ul>
                     </li>
@@ -69,10 +68,8 @@ require '../db/config.php';
                             <span class="dropdown-icon"><i class="bi bi-chevron-down"></i></span>
                         </a>
                         <ul class="nav-sub-menu">
-                            <li><a href="navigation menus/ppdb.php">Beasiswa</a></li>
-                            <li><a href="navigation menus/ppdb.php">Prestasi</a></li>
-                            <li><a href="navigation menus/ppdb.php">OSIS</a></li>
-                            <li><a href="navigation menus/ppdb.php">Dewan Ambalan</a></li>
+                            <li><a href="./nav-menu/kesiswaan/beasiswa.php">Beasiswa</a></li>
+                            <li><a href="./nav-menu/kesiswaan/prestasi.php">Prestasi</a></li>
 
                         </ul>
                     </li>
@@ -81,8 +78,8 @@ require '../db/config.php';
                             <span class="dropdown-icon"><i class="bi bi-chevron-down"></i></span>
                         </a>
                         <ul class="nav-sub-menu">
-                            <li><a href="navigation menus/ppdb.php">OSIS</a></li>
-                            <li><a href="navigation menus/ppdb.php">Dewan Ambalan</a></li>
+                            <li><a href="./nav-menu/organisasi/osis.php">OSIS</a></li>
+                            <li><a href="./nav-menu/organisasi/DA.php">Dewan Ambalan</a></li>
                         </ul>
                     </li>
                     <li><a href="ekstrakurikuler.php">Ekstrakurikuler</a></li>
