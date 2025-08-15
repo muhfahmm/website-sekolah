@@ -74,10 +74,14 @@ if (!isset($_SESSION['admin'])) {
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#siswa"><i class="bi bi-people"></i> Siswa</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#kelas"><i class="bi bi-collection"></i> Kelas</a>
+            </li>
             <li class="nav-item mt-3">
                 <a class="nav-link text-danger" href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
             </li>
         </ul>
+
     </div>
 
     <!-- Content -->
@@ -86,7 +90,7 @@ if (!isset($_SESSION['admin'])) {
             <div class="tab-pane fade show active" id="home">
                 <h2>Home</h2>
                 <p>Selamat datang di dashboard admin sekolah.</p>
-                <?php echo "<h1>Selamat datang, " . $_SESSION['admin']['username'] . "!</h1>";?>
+                <?php echo "<h1>Selamat datang, " . $_SESSION['admin']['username'] . "!</h1>"; ?>
             </div>
             <div class="tab-pane fade" id="acara">
                 <h2>Acara Sekolah</h2>

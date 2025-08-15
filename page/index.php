@@ -82,9 +82,9 @@ require '../db/config.php';
                             <li><a href="./nav-menu/organisasi/DA.php">Dewan Ambalan</a></li>
                         </ul>
                     </li>
-                    <li><a href="ekstrakurikuler.php">Ekstrakurikuler</a></li>
-                    <li><a href="">Kontak Kami</a></li>
-                    <li><a href="">Gallery</a></li>
+                    <li><a href="./nav-menu/ekstrakurikuler.php">Ekstrakurikuler</a></li>
+                    <li><a href="./nav-menu/kontak.php">Kontak Kami</a></li>
+                    <li><a href="./nav-menu/galery.php">Gallery</a></li>
                     <li class="has-submenu">
                         <a href="javascript:void(0)">PPDB
                             <span class="dropdown-icon"><i class="bi bi-chevron-down"></i></span>
