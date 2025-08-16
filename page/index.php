@@ -22,10 +22,6 @@ require '../db/config.php';
 <body>
     <!-- navbar -->
     <nav class="container" style="position: sticky; top: 0; background: white; z-index: 200;">
-
-        <?php
-        $username = isset($_SESSION['username']) ? $_SESSION['username'] : null;
-        ?>
         <nav class="nav-wrapper">
             <div class="logo">
                 <img src="" alt="logo">
@@ -95,23 +91,6 @@ require '../db/config.php';
                         </ul>
                     </li>
                 </ul>
-            </div>
-
-            <div class="user-control">
-                <?php if ($username): ?>
-                    <div class="user-dropdown">
-                        <a href="javascript:void(0)" class="user-name">
-                            <?php echo htmlspecialchars($username); ?>
-                            <i class="bi bi-chevron-down"></i>
-                        </a>
-                        <ul class="user-menu">
-                            <li><a href="./controller/logout.php">Logout</a></li>
-                        </ul>
-                    </div>
-                <?php else: ?>
-                    <a href="controller/login.php" class="login-btn">Login</a>
-                    <a href="controller/register.php" class="register-btn">Register</a>
-                <?php endif; ?>
             </div>
         </nav>
 
