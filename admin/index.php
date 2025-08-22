@@ -7,9 +7,28 @@ if (!isset($_SESSION['admin'])) {
     header("Location: login.php");
     exit;
 }
+
+$feedback = null; // untuk menampung status feedback
+
+// proses tambah agenda
+if (isset($_POST['simpan'])) {
+    $nama_agenda = mysqli_real_escape_string($db, $_POST['nama_agenda']);
+    $tanggal     = (int) $_POST['tanggal'];
+    $bulan       = mysqli_real_escape_string($db, $_POST['bulan']);
+    $jam         = mysqli_real_escape_string($db, $_POST['jam']);
+    $lokasi      = mysqli_real_escape_string($db, $_POST['lokasi']);
+
+    $query = "INSERT INTO tb_agenda (nama_agenda, tanggal, bulan, jam, lokasi) 
+              VALUES ('$nama_agenda', '$tanggal', '$bulan', '$jam', '$lokasi')";
+    $result = mysqli_query($db, $query);
+
+    if ($result) {
+        $feedback = "success";
+    } else {
+        $feedback = "error";
+    }
+}
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +79,7 @@ if (!isset($_SESSION['admin'])) {
                 <a class="nav-link active" data-bs-toggle="tab" href="#home"><i class="bi bi-house"></i> Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#acara"><i class="bi bi-calendar-event"></i> Agenda</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#agenda"><i class="bi bi-calendar-event"></i> Agenda</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#berita"><i class="bi bi-newspaper"></i> Berita</a>
@@ -81,7 +100,6 @@ if (!isset($_SESSION['admin'])) {
                 <a class="nav-link text-danger" href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
             </li>
         </ul>
-
     </div>
 
     <!-- Content -->
@@ -90,12 +108,63 @@ if (!isset($_SESSION['admin'])) {
             <div class="tab-pane fade show active" id="home">
                 <h2>Home</h2>
                 <p>Selamat datang di dashboard admin sekolah.</p>
-                <?php echo "<h1>Selamat datang, " . $_SESSION['admin']['username'] . "!</h1>"; ?>
+                <?php echo "<h5>Selamat datang, <b>" . htmlspecialchars($_SESSION['admin']['username']) . "</b>!</h5>"; ?>
             </div>
-            <div class="tab-pane fade" id="acara">
-                <h2>Acara Sekolah</h2>
-                <p>Kelola acara sekolah di sini.</p>
+
+            <div class="tab-pane fade" id="agenda">
+                <h2>Agenda Sekolah</h2>
+                <p>Kelola agenda sekolah di sini.</p>
+
+                <!-- Form Tambah Agenda -->
+                <div class="container mt-4">
+                    <h5>Tambah Agenda</h5>
+                    <form method="POST" action="" id="agendaForm">
+                        <div class="mb-3">
+                            <label for="nama_agenda" class="form-label">Nama Agenda</label>
+                            <input type="text" class="form-control" id="nama_agenda" name="nama_agenda" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tanggal" class="form-label">Tanggal</label>
+                            <input type="number" class="form-control" id="tanggal" name="tanggal" min="1" max="31" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="bulan" class="form-label">Bulan</label>
+                            <select class="form-control" id="bulan" name="bulan" required>
+                                <option value="">-- Pilih Bulan --</option>
+                                <?php
+                                $bulanList = [
+                                    "Januari",
+                                    "Februari",
+                                    "Maret",
+                                    "April",
+                                    "Mei",
+                                    "Juni",
+                                    "Juli",
+                                    "Agustus",
+                                    "September",
+                                    "Oktober",
+                                    "November",
+                                    "Desember"
+                                ];
+                                foreach ($bulanList as $b) {
+                                    echo "<option value='$b'>$b</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jam" class="form-label">Jam</label>
+                            <input type="time" class="form-control" id="jam" name="jam" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="lokasi" class="form-label">Lokasi</label>
+                            <input type="text" class="form-control" id="lokasi" name="lokasi" required>
+                        </div>
+                        <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+                    </form>
+                </div>
             </div>
+
             <div class="tab-pane fade" id="berita">
                 <h2>Berita Terbaru</h2>
                 <p>Kelola berita sekolah di sini.</p>
@@ -115,9 +184,74 @@ if (!isset($_SESSION['admin'])) {
         </div>
     </div>
 
+    <!-- Modal Sukses -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Berhasil</h5>
+                </div>
+                <div class="modal-body">
+                    Agenda berhasil ditambahkan!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Modal Gagal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">Gagal</h5>
+                </div>
+                <div class="modal-body">
+                    Terjadi kesalahan saat menambahkan agenda.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        <?php if ($feedback === "success") : ?>
+            var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show();
+            document.getElementById("agendaForm").reset();
+        <?php elseif ($feedback === "error") : ?>
+            var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+            errorModal.show();
+        <?php endif; ?>
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // cek apakah ada tab terakhir yg disimpan
+            let activeTab = localStorage.getItem("activeTab");
+            if (activeTab) {
+                let someTabTriggerEl = document.querySelector(`a[href="${activeTab}"]`);
+                if (someTabTriggerEl) {
+                    let tab = new bootstrap.Tab(someTabTriggerEl);
+                    tab.show();
+                }
+            }
+
+            // simpan tab setiap kali berganti
+            let tabLinks = document.querySelectorAll('#sidebarMenu a[data-bs-toggle="tab"]');
+            tabLinks.forEach(function(tabLink) {
+                tabLink.addEventListener("shown.bs.tab", function(event) {
+                    localStorage.setItem("activeTab", event.target.getAttribute("href"));
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>

@@ -44,8 +44,8 @@ require '../db/config.php';
                         </a>
                         <ul class="nav-sub-menu">
                             <li><a href="./nav-menu/profile/about.php">Tentang Kami</a></li>
-                            <li><a href="./nav-menu/profile/visi-misi.php">Visi & Misi</a></li>
-                            <li><a href="./nav-menu/profile/fasilitas.php">Fasilitas</a></li>
+                            <li><a href="./nav-menu/profile/visi-misi.php">Fasilitas</a></li>
+                            <li><a href="./nav-menu/profile/fasilitas.php">Kesiswaan</a></li>
                         </ul>
                     </li>
                     <li class="has-submenu">
@@ -55,7 +55,6 @@ require '../db/config.php';
                         <ul class="nav-sub-menu">
                             <li><a href="./nav-menu/informasi/siswa.php">Siswa</a></li>
                             <li><a href="./nav-menu/informasi/guru.php">Guru</a></li>
-                            <li><a href="./nav-menu/informasi/alumni.php">Alumni</a></li>
 
                         </ul>
                     </li>
@@ -1101,22 +1100,6 @@ require '../db/config.php';
                         <li><i class="bi bi-clock"></i> Senin-Jumat: 07.00 - 15.00 WIB</li>
                     </ul>
                 </div>
-
-                <div class="footer-col">
-                    <div class="user-control">
-                        <?php if ($username): ?>
-                            <div class="user-dropdown">
-                                <a href="javascript:void(0)" class="user-name" style="color: white; font-weight: bold;">
-                                    <?php echo htmlspecialchars($username); ?>
-                                </a>
-                            </div>
-                        <?php else: ?>
-                            <a href="controller/login.php" class="login-btn">Login</a>
-                            <a href="controller/register.php" class="register-btn">Register</a>
-                        <?php endif; ?>
-                    </div>
-                </div>
-
             </div>
 
             <div class="copyright">
