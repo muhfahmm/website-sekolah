@@ -9,25 +9,6 @@ if (!isset($_SESSION['admin'])) {
 }
 
 $feedback = null; // untuk menampung status feedback
-
-// proses tambah agenda
-if (isset($_POST['simpan'])) {
-    $nama_agenda = mysqli_real_escape_string($db, $_POST['nama_agenda']);
-    $tanggal     = (int) $_POST['tanggal'];
-    $bulan       = mysqli_real_escape_string($db, $_POST['bulan']);
-    $jam         = mysqli_real_escape_string($db, $_POST['jam']);
-    $lokasi      = mysqli_real_escape_string($db, $_POST['lokasi']);
-
-    $query = "INSERT INTO tb_agenda (nama_agenda, tanggal, bulan, jam, lokasi) 
-              VALUES ('$nama_agenda', '$tanggal', '$bulan', '$jam', '$lokasi')";
-    $result = mysqli_query($db, $query);
-
-    if ($result) {
-        $feedback = "success";
-    } else {
-        $feedback = "error";
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -160,7 +141,27 @@ if (isset($_POST['simpan'])) {
                             <label for="lokasi" class="form-label">Lokasi</label>
                             <input type="text" class="form-control" id="lokasi" name="lokasi" required>
                         </div>
-                        <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+                        <button type="submit" name="simpan_agenda" class="btn btn-primary">Simpan agenda</button>
+                        <?php
+                        // proses tambah agenda
+                        if (isset($_POST['simpan_agenda'])) {
+                            $nama_agenda = mysqli_real_escape_string($db, $_POST['nama_agenda']);
+                            $tanggal     = (int) $_POST['tanggal'];
+                            $bulan       = mysqli_real_escape_string($db, $_POST['bulan']);
+                            $jam         = mysqli_real_escape_string($db, $_POST['jam']);
+                            $lokasi      = mysqli_real_escape_string($db, $_POST['lokasi']);
+
+                            $query = "INSERT INTO tb_agenda (nama_agenda, tanggal, bulan, jam, lokasi) 
+                VALUES ('$nama_agenda', '$tanggal', '$bulan', '$jam', '$lokasi')";
+                            $result = mysqli_query($db, $query);
+
+                            if ($result) {
+                                $feedback = "success";
+                            } else {
+                                $feedback = "error";
+                            }
+                        }
+                        ?>
                     </form>
                 </div>
             </div>
@@ -168,7 +169,7 @@ if (isset($_POST['simpan'])) {
             <div class="tab-pane fade" id="berita">
                 <h2>Berita Terbaru</h2>
                 <p>Kelola berita sekolah di sini.</p>
-                
+
             </div>
             <div class="tab-pane fade" id="ppdb">
                 <h2>PPDB</h2>
