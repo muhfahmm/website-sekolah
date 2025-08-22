@@ -168,6 +168,7 @@ if (isset($_POST['simpan'])) {
             <div class="tab-pane fade" id="berita">
                 <h2>Berita Terbaru</h2>
                 <p>Kelola berita sekolah di sini.</p>
+                
             </div>
             <div class="tab-pane fade" id="ppdb">
                 <h2>PPDB</h2>
@@ -218,6 +219,7 @@ if (isset($_POST['simpan'])) {
         </div>
     </div>
 
+    <!-- modal bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         <?php if ($feedback === "success") : ?>
@@ -230,6 +232,7 @@ if (isset($_POST['simpan'])) {
         <?php endif; ?>
     </script>
 
+    <!-- menyimpan data ke localstorage agar ketika di refresh tab tidak kembali ke home -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // cek apakah ada tab terakhir yg disimpan
