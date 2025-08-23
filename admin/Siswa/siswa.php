@@ -74,7 +74,7 @@ $result = mysqli_query($db, "SELECT * FROM tb_siswa ORDER BY id DESC");
                         <td><?= $row['jurusan'] ?></td>
                         <td>
                             <?php if ($row['foto']) { ?>
-                                <img src="uploads/<?= $row['foto'] ?>" width="50">
+                                <img src="../uploads/<?= $row['foto'] ?>" width="50">
                             <?php } ?>
                         </td>
                         <td>
