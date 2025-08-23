@@ -1,6 +1,12 @@
 <?php
 session_start();
 require '../db/config.php';
+
+// berita
+$news = mysqli_query($db, "SELECT * FROM tb_berita");
+
+// agenda
+$agenda = mysqli_query($db, "SELECT * FROM tb_agenda");
 ?>
 
 <!DOCTYPE html>
@@ -434,77 +440,17 @@ require '../db/config.php';
         <div class="news-wrapper">
             <h1 class="section-title">Berita Terbaru</h1>
             <div class="news-content">
-                <div class="news-content-wrapper">
-                    <img src="img/news.jpg" alt="News Image">
-                    <div class="news-detail">
-                        <h2>Lorem, ipsum dolor.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <div class="date">1-Januari-2025</div>
-                    </div>
-                </div>
 
+            <?php while ($row = mysqli_fetch_assoc($news)) {?>
                 <div class="news-content-wrapper">
-                    <img src="img/news.jpg" alt="News Image">
+                    <img src="../admin/uploads/<?= $row['gambar']; ?>" width="80">
                     <div class="news-detail">
-                        <h2>Lorem, ipsum dolor.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <div class="date">2-Januari-2025</div>
+                        <h2><?= htmlspecialchars($row['nama_berita']); ?></h2>
+                        <p><?= htmlspecialchars($row['deskripsi_berita']); ?></p>
+                        <div class="date"><?= htmlspecialchars($row['tanggal']); ?></div>
                     </div>
                 </div>
-
-                <div class="news-content-wrapper">
-                    <img src="img/news.jpg" alt="News Image">
-                    <div class="news-detail">
-                        <h2>Lorem, ipsum dolor.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <div class="date">3-Januari-2025</div>
-                    </div>
-                </div>
-
-                <div class="news-content-wrapper">
-                    <img src="img/news.jpg" alt="News Image">
-                    <div class="news-detail">
-                        <h2>Lorem, ipsum dolor.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <div class="date">4-Januari-2025</div>
-                    </div>
-                </div>
-
-                <div class="news-content-wrapper">
-                    <img src="img/news.jpg" alt="News Image">
-                    <div class="news-detail">
-                        <h2>Lorem, ipsum dolor.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <div class="date">5-Januari-2025</div>
-                    </div>
-                </div>
-
-                <div class="news-content-wrapper">
-                    <img src="img/news.jpg" alt="News Image">
-                    <div class="news-detail">
-                        <h2>Lorem, ipsum dolor.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <div class="date">6-Januari-2025</div>
-                    </div>
-                </div>
-
-                <div class="news-content-wrapper">
-                    <img src="img/news.jpg" alt="News Image">
-                    <div class="news-detail">
-                        <h2>Lorem, ipsum dolor.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <div class="date">7-Januari-2025</div>
-                    </div>
-                </div>
-
-                <div class="news-content-wrapper">
-                    <img src="img/news.jpg" alt="News Image">
-                    <div class="news-detail">
-                        <h2>Lorem, ipsum dolor.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <div class="date">8-Januari-2025</div>
-                    </div>
-                </div>
+            <?php }?>
             </div>
 
             <div class="button-container">
@@ -870,54 +816,22 @@ require '../db/config.php';
         <h2 class="section-title"><i class="bi bi-calendar-check"></i> Agenda Sekolah</h2>
         <div class="agenda-list">
 
+        <?php while ($row = mysqli_fetch_assoc($agenda)) {?>
             <div class="agenda-item">
                 <div class="agenda-date">
-                    <span class="date-day">15</span>
-                    <span class="date-month">AGU</span>
+                    <span class="date-day"><?= htmlspecialchars($row['tanggal']); ?></span>
+                    <span class="date-month"><?= htmlspecialchars($row['bulan']); ?></span>
                 </div>
                 <div class="agenda-content">
-                    <h3>Penerimaan Siswa Baru</h3>
+                    <h3><?= htmlspecialchars($row['nama_agenda']); ?></h3>
                     <div class="agenda-meta">
-                        <span class="agenda-time"><i class="bi bi-clock"></i> 08.00 - 12.00 WIB</span>
-                        <span class="agenda-location"><i class="bi bi-geo-alt"></i> Aula Sekolah</span>
+                        <span class="agenda-time"><i class="bi bi-clock"></i> <?= htmlspecialchars($row['jam']); ?></span>
+                        -
+                        <span class="agenda-location"><i class="bi bi-geo-alt"></i> <?= htmlspecialchars($row['lokasi']); ?></span>
                     </div>
                 </div>
             </div>
-
-            <div class="agenda-item">
-                <div class="agenda-date">
-                    <span class="date-day">20</span>
-                    <span class="date-month">AGU</span>
-                </div>
-                <div class="agenda-content">
-                    <h3>Workshop Robotik</h3>
-                    <div class="agenda-meta">
-                        <span class="agenda-time"><i class="bi bi-clock"></i> 09.00 - 15.00 WIB</span>
-                        <span class="agenda-location"><i class="bi bi-geo-alt"></i> Lab. Komputer</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="agenda-item">
-                <div class="agenda-date">
-                    <span class="date-day">25</span>
-                    <span class="date-month">AGU</span>
-                </div>
-                <div class="agenda-content">
-                    <h3>Munasaba Tahfidz</h3>
-                    <div class="agenda-meta">
-                        <span class="agenda-time"><i class="bi bi-clock"></i> 07.00 - 10.00 WIB</span>
-                        <span class="agenda-location"><i class="bi bi-geo-alt"></i> Masjid Sekolah</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="button-container">
-                <button class="see-more">
-                    Lihat Selengkapnya
-                    <i class="bi bi-arrow-right"></i>
-                </button>
-            </div>
+            <?php }?>
         </div>
 
         <style>
