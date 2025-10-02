@@ -1,5 +1,13 @@
 <?php
 include '../../db/config.php'; // koneksi ke DB
+
+session_start();
+if (!isset($_SESSION['admin'])) {
+    header("Location: ../login.php");
+    exit;
+}
+
+
 $result = mysqli_query($db, "SELECT * FROM tb_agenda ORDER BY id DESC");
 ?>
 <!DOCTYPE html>
@@ -39,6 +47,7 @@ $result = mysqli_query($db, "SELECT * FROM tb_agenda ORDER BY id DESC");
                         <li class="nav-item"><a href="../guru-staff.php/guruStaff.php" class="nav-link">👨‍🏫 Data Guru</a></li>
                         <li class="nav-item"><a href="../berita/berita.php" class="nav-link">📰 Berita</a></li>
                         <li class="nav-item"><a href="../agenda/agenda.php" class="nav-link active">📅 Agenda</a></li>
+                        <li class="nav-item"><a href="../program-unggulan/program-unggulan.php" class="nav-link">⭐ Program Unggulan</a></li>
                         <li class="nav-item mt-3"><a href="../logout.php" class="nav-link text-danger fw-bold">🚪 Logout</a></li>
                     </ul>
                 </div>

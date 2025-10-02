@@ -1,5 +1,12 @@
 <?php
 include "../../db/config.php";
+
+session_start();
+if (!isset($_SESSION['admin'])) {
+    header("Location: ../login.php");
+    exit;
+}
+
 $result = mysqli_query($db, "SELECT * FROM tb_guru ORDER BY id DESC");
 ?>
 
@@ -39,9 +46,10 @@ $result = mysqli_query($db, "SELECT * FROM tb_guru ORDER BY id DESC");
                     <ul class="nav flex-column mt-4">
                         <li class="nav-item"><a href="../index.php" class="nav-link">🏠 Dashboard</a></li>
                         <li class="nav-item"><a href="../siswa/siswa.php" class="nav-link">👨‍🎓 Data Siswa</a></li>
-                        <li class="nav-item"><a href="../guru-staff.php/guruStaff.php" class="nav-link">👨‍🏫 Data Guru</a></li>
+                        <li class="nav-item"><a href="../guru-staff.php/guruStaff.php" class="nav-link active">👨‍🏫 Data Guru</a></li>
                         <li class="nav-item"><a href="../berita/berita.php" class="nav-link">📰 Berita</a></li>
                         <li class="nav-item"><a href="../agenda/agenda.php" class="nav-link">📅 Agenda</a></li>
+                        <li class="nav-item"><a href="../program-unggulan/program-unggulan.php" class="nav-link">⭐ Program Unggulan</a></li>
                         <li class="nav-item mt-3">
                             <a href="../logout.php" class="nav-link text-danger fw-bold">🚪 Logout</a>
                         </li>
