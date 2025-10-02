@@ -441,16 +441,16 @@ $agenda = mysqli_query($db, "SELECT * FROM tb_agenda");
             <h1 class="section-title">Berita Terbaru</h1>
             <div class="news-content">
 
-            <?php while ($row = mysqli_fetch_assoc($news)) {?>
-                <div class="news-content-wrapper">
-                    <img src="../admin/uploads/<?= $row['gambar']; ?>" width="80">
-                    <div class="news-detail">
-                        <h2><?= htmlspecialchars($row['nama_berita']); ?></h2>
-                        <p><?= htmlspecialchars($row['deskripsi_berita']); ?></p>
-                        <div class="date"><?= htmlspecialchars($row['tanggal']); ?></div>
+                <?php while ($row = mysqli_fetch_assoc($news)) { ?>
+                    <div class="news-content-wrapper">
+                        <img src="../admin/uploads/<?= $row['gambar']; ?>" width="80">
+                        <div class="news-detail">
+                            <h2><?= htmlspecialchars($row['nama_berita']); ?></h2>
+                            <p><?= htmlspecialchars($row['deskripsi_berita']); ?></p>
+                            <div class="date"><?= htmlspecialchars($row['tanggal']); ?></div>
+                        </div>
                     </div>
-                </div>
-            <?php }?>
+                <?php } ?>
             </div>
 
             <div class="button-container">
@@ -574,219 +574,220 @@ $agenda = mysqli_query($db, "SELECT * FROM tb_agenda");
         </style>
     </div>
 
-<?php
-// ambil data dari tabel program unggulan
-$result = mysqli_query($db, "SELECT * FROM tb_program_unggulan ORDER BY id DESC");
-?>
+    <!-- program unggulan -->
+    <?php
+    // ambil data dari tabel program unggulan
+    $result = mysqli_query($db, "SELECT * FROM tb_program_unggulan ORDER BY id DESC");
+    ?>
 
-<!-- program unggulan -->
-<div class="container">
-    <div class="program-wrapper">
-        <h1 class="section-title">Program Unggulan</h1>
+    <!-- program unggulan -->
+    <div class="container">
+        <div class="program-wrapper">
+            <h1 class="section-title">Program Unggulan</h1>
 
-        <div class="program-grid">
-            <?php if (mysqli_num_rows($result) > 0): ?>
-                <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                    <div class="program-card">
-                        <div class="program-image">
-                            <img src="../admin/uploads/<?php echo $row['image']; ?>" alt="<?php echo $row['nama_program_unggulan']; ?>">
-                            <?php if (!empty($row['badge'])): ?>
-                                <div class="program-badge"><?php echo $row['badge']; ?></div>
-                            <?php endif; ?>
-                        </div>
-                        <div class="program-content">
-                            <div class="program-text">
-                                <h2><?php echo $row['nama_program_unggulan']; ?></h2>
-                                <p><?php echo $row['deskripsi_program_unggulan']; ?></p>
-                                <?php if (!empty($row['list_program_unggulan'])): ?>
-                                    <ul class="program-features">
-                                        <?php
-                                        $list = explode("\r\n", $row['list_program_unggulan']);
-                                        foreach ($list as $item) {
-                                            echo "<li><i class='bi bi-check-circle'></i> " . htmlspecialchars($item) . "</li>";
-                                        }
-                                        ?>
-                                    </ul>
+            <div class="program-grid">
+                <?php if (mysqli_num_rows($result) > 0): ?>
+                    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                        <div class="program-card">
+                            <div class="program-image">
+                                <img src="../admin/uploads/<?php echo $row['image']; ?>" alt="<?php echo $row['nama_program_unggulan']; ?>">
+                                <?php if (!empty($row['badge'])): ?>
+                                    <div class="program-badge"><?php echo $row['badge']; ?></div>
                                 <?php endif; ?>
                             </div>
-                            <div class="program-button-container">
-                                <a href="detail-program.php?id=<?php echo $row['id']; ?>" class="program-button">
-                                    Detail Program <i class="bi bi-arrow-right"></i>
-                                </a>
+                            <div class="program-content">
+                                <div class="program-text">
+                                    <h2><?php echo $row['nama_program_unggulan']; ?></h2>
+                                    <p><?php echo $row['deskripsi_program_unggulan']; ?></p>
+                                    <?php if (!empty($row['list_program_unggulan'])): ?>
+                                        <ul class="program-features">
+                                            <?php
+                                            $list = explode("\r\n", $row['list_program_unggulan']);
+                                            foreach ($list as $item) {
+                                                echo "<li><i class='bi bi-check-circle'></i> " . htmlspecialchars($item) . "</li>";
+                                            }
+                                            ?>
+                                        </ul>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="program-button-container">
+                                    <a href="menu/program-unggulan.php?id=<?php echo $row['id']; ?>" class="program-button">
+                                        Detail Program <i class="bi bi-arrow-right"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <p>Tidak ada program unggulan tersedia.</p>
-            <?php endif; ?>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <p>Tidak ada program unggulan tersedia.</p>
+                <?php endif; ?>
+            </div>
         </div>
-    </div>
 
-    <!-- CSS sama persis seperti yang Anda buat sebelumnya -->
-    <style>
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #2c3e50;
-            margin-bottom: 50px;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: #2980b9;
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-
-        .program-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .program-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .program-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .program-image {
-            position: relative;
-            height: 220px;
-            overflow: hidden;
-        }
-
-        .program-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .program-card:hover .program-image img {
-            transform: scale(1.05);
-        }
-
-        .program-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #e74c3c;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .program-content {
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .program-text {
-            flex-grow: 1;
-        }
-
-        .program-content h2 {
-            color: #2c3e50;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .program-content p {
-            color: #7f8c8d;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .program-features {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 25px 0;
-        }
-
-        .program-features li {
-            padding: 5px 0;
-            color: #34495e;
-        }
-
-        .program-features i {
-            color: #27ae60;
-            margin-right: 8px;
-        }
-
-        .program-button-container {
-            margin-top: auto;
-            padding-top: 20px;
-        }
-
-        .program-button {
-            display: inline-flex;
-            align-items: center;
-            padding: 10px 20px;
-            background: #2980b9;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .program-button:hover {
-            background: #3498db;
-            transform: translateX(5px);
-        }
-
-        .program-button i {
-            margin-left: 5px;
-            transition: transform 0.3s ease;
-        }
-
-        .program-button:hover i {
-            transform: translateX(3px);
-        }
-
-        @media (max-width: 768px) {
-            .program-grid {
-                grid-template-columns: 1fr;
-            }
-
+        <!-- CSS sama persis seperti yang Anda buat sebelumnya -->
+        <style>
             .section-title {
-                font-size: 2rem;
-                margin-bottom: 30px;
+                text-align: center;
+                font-size: 2.5rem;
+                color: #2c3e50;
+                margin-bottom: 50px;
+                position: relative;
             }
-        }
 
-        @media (max-width: 480px) {
-            .program-content {
-                padding: 20px;
+            .section-title::after {
+                content: '';
+                display: block;
+                width: 80px;
+                height: 4px;
+                background: #2980b9;
+                margin: 15px auto 0;
+                border-radius: 2px;
+            }
+
+            .program-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 30px;
+            }
+
+            .program-card {
+                background: white;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            .program-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
             }
 
             .program-image {
-                height: 180px;
+                position: relative;
+                height: 220px;
+                overflow: hidden;
             }
-        }
-    </style>
-</div>
+
+            .program-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            }
+
+            .program-card:hover .program-image img {
+                transform: scale(1.05);
+            }
+
+            .program-badge {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background: #e74c3c;
+                color: white;
+                padding: 5px 15px;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: bold;
+            }
+
+            .program-content {
+                padding: 25px;
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+            }
+
+            .program-text {
+                flex-grow: 1;
+            }
+
+            .program-content h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                margin-bottom: 15px;
+                font-size: 1.5rem;
+            }
+
+            .program-content p {
+                color: #7f8c8d;
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
+
+            .program-features {
+                list-style: none;
+                padding: 0;
+                margin: 0 0 25px 0;
+            }
+
+            .program-features li {
+                padding: 5px 0;
+                color: #34495e;
+            }
+
+            .program-features i {
+                color: #27ae60;
+                margin-right: 8px;
+            }
+
+            .program-button-container {
+                margin-top: auto;
+                padding-top: 20px;
+            }
+
+            .program-button {
+                display: inline-flex;
+                align-items: center;
+                padding: 10px 20px;
+                background: #2980b9;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: 500;
+                transition: all 0.3s ease;
+            }
+
+            .program-button:hover {
+                background: #3498db;
+                transform: translateX(5px);
+            }
+
+            .program-button i {
+                margin-left: 5px;
+                transition: transform 0.3s ease;
+            }
+
+            .program-button:hover i {
+                transform: translateX(3px);
+            }
+
+            @media (max-width: 768px) {
+                .program-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .section-title {
+                    font-size: 2rem;
+                    margin-bottom: 30px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .program-content {
+                    padding: 20px;
+                }
+
+                .program-image {
+                    height: 180px;
+                }
+            }
+        </style>
+    </div>
 
 
     <!-- agenda / jadwal -->
@@ -794,22 +795,22 @@ $result = mysqli_query($db, "SELECT * FROM tb_program_unggulan ORDER BY id DESC"
         <h2 class="section-title"><i class="bi bi-calendar-check"></i> Agenda Sekolah</h2>
         <div class="agenda-list">
 
-        <?php while ($row = mysqli_fetch_assoc($agenda)) {?>
-            <div class="agenda-item">
-                <div class="agenda-date">
-                    <span class="date-day"><?= htmlspecialchars($row['tanggal']); ?></span>
-                    <span class="date-month"><?= htmlspecialchars($row['bulan']); ?></span>
-                </div>
-                <div class="agenda-content">
-                    <h3><?= htmlspecialchars($row['nama_agenda']); ?></h3>
-                    <div class="agenda-meta">
-                        <span class="agenda-time"><i class="bi bi-clock"></i> <?= htmlspecialchars($row['jam']); ?></span>
-                        -
-                        <span class="agenda-location"><i class="bi bi-geo-alt"></i> <?= htmlspecialchars($row['lokasi']); ?></span>
+            <?php while ($row = mysqli_fetch_assoc($agenda)) { ?>
+                <div class="agenda-item">
+                    <div class="agenda-date">
+                        <span class="date-day"><?= htmlspecialchars($row['tanggal']); ?></span>
+                        <span class="date-month"><?= htmlspecialchars($row['bulan']); ?></span>
+                    </div>
+                    <div class="agenda-content">
+                        <h3><?= htmlspecialchars($row['nama_agenda']); ?></h3>
+                        <div class="agenda-meta">
+                            <span class="agenda-time"><i class="bi bi-clock"></i> <?= htmlspecialchars($row['jam']); ?></span>
+                            -
+                            <span class="agenda-location"><i class="bi bi-geo-alt"></i> <?= htmlspecialchars($row['lokasi']); ?></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <?php }?>
+            <?php } ?>
         </div>
 
         <style>

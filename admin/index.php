@@ -55,6 +55,7 @@ $totalAgenda  = mysqli_fetch_assoc(mysqli_query($db, "SELECT COUNT(*) as total F
                         <li class="nav-item"><a href="./berita/berita.php" class="nav-link">📰 Berita</a></li>
                         <li class="nav-item"><a href="./agenda/agenda.php" class="nav-link">📅 Agenda</a></li>
                         <li class="nav-item"><a href="./program-unggulan/program-unggulan.php" class="nav-link">⭐ Program Unggulan</a></li>
+                        <li class="nav-item"><a href="./program-unggulan/detail-program-unggulan/detail-program-unggulan.php" class="nav-link">⭐ Detail Program Unggulan</a></li>
                         <li class="nav-item mt-3"><a href="logout.php" class="nav-link text-danger fw-bold">🚪 Logout</a></li>
                     </ul>
                 </div>

@@ -8,7 +8,7 @@ if (!isset($_SESSION['admin'])) {
 }
 
 // panggil koneksi database
-require "../../db/config.php"; 
+require "../../db/config.php";
 
 // query ambil data program unggulan
 $result = mysqli_query($db, "SELECT * FROM tb_program_unggulan");
@@ -177,7 +177,12 @@ $result = mysqli_query($db, "SELECT * FROM tb_program_unggulan");
 
                                 <!-- Tombol Hapus -->
                                 <button class="btn-delete mt-2" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $row['id']; ?>">Hapus</button>
+
+                                <!-- Tombol Tambah Detail -->
+                                <a href="detail-program-unggulan/detail-program-unggulan.php?program_id=<?php echo $row['id']; ?>"
+                                    class="btn btn-primary mt-2">Tambah Detail</a>
                             </div>
+
 
                             <!-- Modal Konfirmasi Hapus -->
                             <div class="modal fade" id="deleteModal<?php echo $row['id']; ?>" tabindex="-1">
@@ -209,4 +214,5 @@ $result = mysqli_query($db, "SELECT * FROM tb_program_unggulan");
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
