@@ -30,7 +30,7 @@ $agenda = mysqli_query($db, "SELECT * FROM tb_agenda");
     <nav class="container" style="position: sticky; top: 0; background: white; z-index: 200;">
         <nav class="nav-wrapper">
             <div class="logo">
-                <img src="" alt="logo">
+                <img src="img/logo sekolah.png"  alt="logo" height="70px">
             </div>
 
             <!-- Mobile Menu Toggle -->
@@ -474,7 +474,6 @@ $agenda = mysqli_query($db, "SELECT * FROM tb_agenda");
             .container {
                 max-width: 1400px;
                 margin: 0 auto;
-                padding: 20px;
             }
 
             .news-wrapper h1 {
