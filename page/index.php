@@ -475,20 +475,17 @@ $agenda = mysqli_query($db, "SELECT * FROM tb_agenda");
                 max-width: 1400px;
                 margin: 0 auto;
             }
-
             .news-wrapper h1 {
                 text-align: center;
                 margin-bottom: 40px;
                 font-size: 2.2rem;
                 color: #333;
             }
-
             .news-content {
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
                 gap: 25px;
             }
-
             .news-content-wrapper {
                 display: flex;
                 flex-direction: column;
@@ -499,7 +496,6 @@ $agenda = mysqli_query($db, "SELECT * FROM tb_agenda");
                 background: white;
                 height: 100%;
             }
-
             .news-content-wrapper:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
@@ -564,7 +560,6 @@ $agenda = mysqli_query($db, "SELECT * FROM tb_agenda");
                 .news-content-wrapper img {
                     height: 220px;
                 }
-
                 .see-more {
                     padding: 10px 25px;
                     font-size: 0.95rem;
