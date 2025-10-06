@@ -144,8 +144,6 @@ $agenda = mysqli_query($db, "SELECT * FROM tb_agenda");
             }
         </style>
 
-
-
         <style>
             .container {
                 max-width: 1500px;
